@@ -25,7 +25,7 @@ public class ReqresTests extends TestBase{
                 .body("page", is(2));
     }
 
-    @DisplayName("Поиск отсутствующего пользоавтеля")
+    @DisplayName("Поиск отсутствующего пользователя")
     @Test
 
     void getSingleUserNotFoundTest() {
@@ -76,7 +76,7 @@ public class ReqresTests extends TestBase{
                 .body("token", is("QpwL5tke4Pnpja7X4"));
     }
 
-    @DisplayName("Недачная авторизация пользователя (отсутствует пароль)")
+    @DisplayName("Неудачная авторизация пользователя (отсутствует пароль)")
     @Test
 
     void postLoginUnsuccessfull() {
