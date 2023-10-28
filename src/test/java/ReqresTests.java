@@ -9,7 +9,6 @@ public class ReqresTests extends TestBase{
 
     @DisplayName("Получение списка пользователей")
     @Test
-
     void getListUsersTest() {
         given()
                 .log().uri()
@@ -27,7 +26,6 @@ public class ReqresTests extends TestBase{
 
     @DisplayName("Поиск отсутствующего пользователя")
     @Test
-
     void getSingleUserNotFoundTest() {
         given()
                 .log().uri()
@@ -43,7 +41,6 @@ public class ReqresTests extends TestBase{
 
     @DisplayName("Удаление пользователя")
     @Test
-
     void deleteUserTest() {
         given()
                 .log().uri()
@@ -59,7 +56,6 @@ public class ReqresTests extends TestBase{
 
     @DisplayName("Удачная авторизация пользователя")
     @Test
-
     void postLoginSuccessfull() {
         given()
                 .log().uri()
@@ -78,7 +74,6 @@ public class ReqresTests extends TestBase{
 
     @DisplayName("Неудачная авторизация пользователя (отсутствует пароль)")
     @Test
-
     void postLoginUnsuccessfull() {
         given()
                 .log().uri()
