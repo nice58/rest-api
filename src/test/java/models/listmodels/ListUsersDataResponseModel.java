@@ -1,4 +1,4 @@
-package models.ListModels;
+package models.listmodels;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

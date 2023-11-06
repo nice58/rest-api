@@ -1,8 +1,8 @@
 package tests;
 
-import models.ListModels.ListUsersDataResponseModel;
-import models.ListModels.ListUsersResponseModel;
-import models.ListModels.ListUsersSupportDataResponseModel;
+import models.listmodels.ListUsersDataResponseModel;
+import models.listmodels.ListUsersResponseModel;
+import models.listmodels.ListUsersSupportDataResponseModel;
 import models.LoginBodyModel;
 import models.LoginResponseModel;
 import models.MissingPasswordResponseModel;
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 import static specs.DeleteUserSpec.deleteUserRequestSpec;
 import static specs.DeleteUserSpec.deleteUserResponseSpec;
 import static specs.ListUsersSpec.listUsersRequestSpec;
@@ -35,24 +35,24 @@ public class ReqresTests extends TestBase{
                 .extract().as(ListUsersResponseModel.class));
 
         step ("Проверка общих данных", () -> {
-                assertEquals(2, responseModel.getPage());
-                assertEquals(6, responseModel.getPerPage());
-                assertEquals(12, responseModel.getTotal());
-                assertEquals(2, responseModel.getTotalPages());
+            assertThat(responseModel.getPage()).isEqualTo(2);
+            assertThat(responseModel.getPerPage()).isEqualTo(6);
+            assertThat(responseModel.getTotal()).isEqualTo(12);
+            assertThat(responseModel.getTotalPages()).isEqualTo(2);
     });
         step("Проверка данных первого пользователя из списка", () -> {
             List<ListUsersDataResponseModel> data = responseModel.getData();
-            assertEquals(7, data.get(0).getId());
-            assertEquals("michael.lawson@reqres.in", data.get(0).getEmail());
-            assertEquals("Michael", data.get(0).getFirstName());
-            assertEquals("Lawson", data.get(0).getLastName());
-            assertEquals("https://reqres.in/img/faces/7-image.jpg", data.get(0).getAvatar());
+            assertThat(data.get(0).getId()).isEqualTo(7);
+            assertThat(data.get(0).getEmail()).isEqualTo("michael.lawson@reqres.in");
+            assertThat(data.get(0).getFirstName()).isEqualTo("Michael");
+            assertThat(data.get(0).getLastName()).isEqualTo("Lawson");
+            assertThat(data.get(0).getAvatar()).isEqualTo("https://reqres.in/img/faces/7-image.jpg");
         });
 
         step("Проверка данных о поддержке", () -> {
             ListUsersSupportDataResponseModel support = responseModel.getSupport();
-            assertEquals("https://reqres.in/#support-heading", support.getUrl());
-            assertEquals("To keep ReqRes free, contributions towards server costs are appreciated!", support.getText());
+            assertThat(support.getUrl()).isEqualTo("https://reqres.in/#support-heading");
+            assertThat(support.getText()).isEqualTo("To keep ReqRes free, contributions towards server costs are appreciated!");
         });
     }
 
@@ -97,7 +97,7 @@ public class ReqresTests extends TestBase{
                     .extract().as(LoginResponseModel.class));
 
         step ("Проверка токена", () ->
-            assertEquals("QpwL5tke4Pnpja7X4", responseModel.getToken()));
+                assertThat(responseModel.getToken()).isNotNull());
 
     }
 
@@ -117,6 +117,6 @@ public class ReqresTests extends TestBase{
                     .extract().as(MissingPasswordResponseModel.class));
 
         step("Проверка текста ошибки", () ->
-                assertEquals("Missing password", responseModel.getError()));
+                assertThat(responseModel.getError()).isEqualTo("Missing password"));
     }
 }

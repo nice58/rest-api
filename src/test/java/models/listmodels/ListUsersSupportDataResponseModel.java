@@ -1,4 +1,4 @@
-package models.ListModels;
+package models.listmodels;
 
 import lombok.Data;
     @Data
