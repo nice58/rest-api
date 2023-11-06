@@ -82,7 +82,7 @@ public class ReqresTests extends TestBase{
 
     @DisplayName("Удачная авторизация пользователя")
     @Test
-    void postLoginSuccessfull() {
+    void postLoginSuccessfullTest() {
         LoginBodyModel autData = new LoginBodyModel();
         autData.setEmail("eve.holt@reqres.in");
         autData.setPassword("cityslicka");
@@ -103,7 +103,7 @@ public class ReqresTests extends TestBase{
 
     @DisplayName("Неудачная авторизация пользователя (отсутствует пароль)")
     @Test
-    void postLoginUnsuccessfull() {
+    void postLoginUnsuccessfullTest() {
         LoginBodyModel autData = new LoginBodyModel();
         autData.setEmail("eve.holt@reqres.in");
 
